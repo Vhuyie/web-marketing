@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindMate Community</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f8fdfd;
+        color: #333;
+      }
+      header {
+        background: white;
+        color: teal;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      }
+      .logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+      nav {
+        display: flex;
+        gap: 1rem;
+      }
+      nav a {
+        text-decoration: none;
+        padding: 0.6rem 1rem;
+        border-radius: 25px;
+        color: teal;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        background: teal;
+        color: white;
+      }
+      .hamburger {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        nav {
+          display: none;
+          flex-direction: column;
+          background: white;
+          position: absolute;
+          top: 70px;
+          right: 0;
+          width: 200px;
+          padding: 1rem;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        nav.active {
+          display: flex;
+        }
+        .hamburger {
+          display: block;
+        }
+      }
+
+      .hero {
+        text-align: center;
+        padding: 6rem 2rem;
+        background: linear-gradient(135deg, #e0f7f5, #f8fdfd);
+        border-bottom-left-radius: 50% 10%;
+        border-bottom-right-radius: 50% 10%;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero h1 {
+        color: teal;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: slideInDown 1s ease forwards;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        animation: fadeIn 1.5s ease forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .thread-list {
+        max-width: 1000px;
+        margin: 4rem auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .thread-card {
+        background: white;
+        border-radius: 20px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: 0.4s;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      .thread-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+      .thread-card h4 {
+        margin: 0;
+        color: teal;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .thread-card p {
+        margin-top: 0.5rem;
+        line-height: 1.4;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        background: teal;
+        color: white;
+        border-top-left-radius: 30% 10%;
+        border-top-right-radius: 30% 10%;
+        margin-top: 4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">🧠 MindMate AI</div>
+      <nav id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="Product.html">Product</a>
+        <a href="service.html">Services</a>
+        <a href="Blog.html">Blog</a>
+        <a href="Community.html">Community</a>
+        <a href="contact.html">Contact</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+      <div class="hamburger" id="hamburger">☰</div>
+    </header>
+
+    <section class="hero">
+      <h1>MindMate Community</h1>
+      <p>
+        Connect, share tips, and celebrate your mental wellness journey with
+        others.
+      </p>
+    </section>
+
+    <section class="thread-list">
+      <div class="thread-card">
+        <h4>How I reduced anxiety in 2 weeks <span>❤️ 👍</span></h4>
+        <p>
+          Sharing my personal experience with daily meditation and journaling
+          practices.
+        </p>
+      </div>
+      <div class="thread-card">
+        <h4>Morning meditation routines <span>❤️ 👍</span></h4>
+        <p>
+          Discussing how different morning habits impact mood and productivity.
+        </p>
+      </div>
+      <div class="thread-card">
+        <h4>Favorite CBT exercises <span>❤️ 👍</span></h4>
+        <p>
+          Sharing effective CBT exercises that helped overcome negative thinking
+          patterns.
+        </p>
+      </div>
+    </section>
+
+    <footer>&copy; 2025 MindMate AI</footer>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      hamburger.addEventListener("click", () =>
+        navLinks.classList.toggle("active")
+      );
+
+      const threads = document.querySelectorAll(".thread-card");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = "translateY(0)";
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      threads.forEach((thread) => observer.observe(thread));
+    </script>
+  </body>
+</html>

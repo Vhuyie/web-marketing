@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindMate AI - World-Class Services</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap");
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f8fdfd;
+        color: #333;
+        overflow-x: hidden;
+      }
+      header {
+        background: white;
+        color: teal;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      }
+      .logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+      nav {
+        display: flex;
+        gap: 1rem;
+      }
+      nav a {
+        text-decoration: none;
+        padding: 0.6rem 1rem;
+        border-radius: 25px;
+        color: teal;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        background: teal;
+        color: white;
+      }
+      .hamburger {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        nav {
+          display: none;
+          flex-direction: column;
+          background: white;
+          position: absolute;
+          top: 70px;
+          right: 0;
+          width: 200px;
+          padding: 1rem;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        nav.active {
+          display: flex;
+        }
+        .hamburger {
+          display: block;
+        }
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        background: linear-gradient(135deg, #e0f7f5, #f8fdfd);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        padding: 6rem 2rem;
+        position: relative;
+        overflow: hidden;
+        animation: gradientShift 10s ease infinite alternate;
+      }
+      @keyframes gradientShift {
+        0% {
+          background: linear-gradient(135deg, #e0f7f5, #f8fdfd);
+        }
+        50% {
+          background: linear-gradient(135deg, #d0f0ef, #e8fcfc);
+        }
+        100% {
+          background: linear-gradient(135deg, #e0f7f5, #f8fdfd);
+        }
+      }
+
+      .hero-text {
+        padding: 2rem;
+      }
+      .hero-text h1 {
+        font-size: 3rem;
+        color: teal;
+        margin-bottom: 1rem;
+        animation: slideInLeft 1s ease forwards;
+      }
+      .hero-text p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        animation: fadeIn 1.5s ease forwards;
+      }
+      .hero-video {
+        text-align: center;
+        perspective: 1000px;
+      }
+      .hero-video iframe {
+        width: 90%;
+        height: 315px;
+        border-radius: 20px;
+        transform: rotateY(-5deg);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transition: transform 0.5s;
+        animation: slideInRight 1s ease forwards;
+      }
+      .hero-video iframe:hover {
+        transform: rotateY(0deg) scale(1.05);
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      section {
+        max-width: 1200px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+        position: relative;
+      }
+      h2 {
+        color: teal;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 2rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+      .feature-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 25px;
+        padding: 2rem;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        transition: transform 0.5s, box-shadow 0.5s, opacity 1s;
+        opacity: 0;
+        transform: translateY(50px) rotateX(10deg);
+        cursor: pointer;
+        position: relative;
+      }
+      .feature-card:hover {
+        transform: rotateY(10deg) rotateX(0deg) translateY(-10px) scale(1.07);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+      .feature-card h4 {
+        margin-bottom: 1rem;
+        color: teal;
+      }
+
+      /* YouTube video wrapper */
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 ratio */
+        border-radius: 15px;
+        overflow: hidden;
+        margin-top: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 128, 128, 0.2);
+      }
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(0, 128, 128, 0.08);
+        animation: blobMove 12s infinite alternate;
+        z-index: -1;
+      }
+      .blob1 {
+        width: 300px;
+        height: 300px;
+        top: -50px;
+        left: -50px;
+      }
+      .blob2 {
+        width: 400px;
+        height: 400px;
+        bottom: -100px;
+        right: -100px;
+      }
+      @keyframes blobMove {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        50% {
+          transform: translate(20px, -30px) rotate(45deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        background: teal;
+        color: white;
+        border-top-left-radius: 30% 10%;
+        border-top-right-radius: 30% 10%;
+        margin-top: 4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">🧠 MindMate AI</div>
+      <nav id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="Product.html">Product</a>
+        <a href="service.html">Services</a>
+        <a href="Blog.html">Blog</a>
+        <a href="Community.html">Community</a>
+        <a href="contact.html">Contact</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+      <div class="hamburger" id="hamburger">☰</div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>MindMate AI Services</h1>
+        <p>
+          Boost your mental wellness with guided meditations, AI coach, and
+          interactive self-care routines.
+        </p>
+        <button class="btn" onclick="scrollToSection('meditations')">
+          Explore Services
+        </button>
+      </div>
+      <div class="hero-video">
+        <iframe
+          src="https://www.youtube.com/embed/FGO8IWiusJo?autoplay=1&mute=1&loop=1&playlist=FGO8IWiusJo&controls=0&modestbranding=1&rel=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+    </section>
+
+    <section id="meditations">
+      <h2>🧘 Daily Meditations</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>Morning Meditation</h4>
+          <p>Start your day focused and energized.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/FGO8IWiusJo?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="feature-card">
+          <h4>Evening Wind-Down</h4>
+          <p>Relax and reflect with calming exercises.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/_3fvhTO3pLM?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="feature-card">
+          <h4>Stress Relief</h4>
+          <p>Quick exercises to reduce stress and restore balance.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/MIr3RsUWrdo?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="aicoach">
+      <h2>🤖 AI Coach</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>Personalized Guidance</h4>
+          <p>AI helps you use MindMate AI effectively.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/VIDEO_ID?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="feature-card">
+          <h4>Step-by-Step Instructions</h4>
+          <p>Learn to navigate the platform easily.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/VIDEO_ID?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="feature-card">
+          <h4>Smart Recommendations</h4>
+          <p>Receive advice tailored to your mood patterns.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/VIDEO_ID?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="selfcare">
+      <h2>🛁 Self-Care Routines</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>Morning Rituals</h4>
+          <p>Start your day with hydration, meditation, and affirmations.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/uT6ASPy2Dbs?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="feature-card">
+          <h4>Evening Wind-Down</h4>
+          <p>
+            End your day with reflection, journaling, and breathing exercises.
+          </p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/DbDoBzGY3vo?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="feature-card">
+          <h4>Weekly Challenges</h4>
+          <p>Engage in small activities to build lasting habits.</p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/OQIOjug4WC8?controls=1&rel=0&modestbranding=1"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>&copy; 2025 MindMate AI</footer>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      hamburger.addEventListener("click", () =>
+        navLinks.classList.toggle("active")
+      );
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Feature cards animation on scroll
+      const cards = document.querySelectorAll(".feature-card");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = "translateY(0) rotateX(0deg)";
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      cards.forEach((card) => observer.observe(card));
+    </script>
+  </body>
+</html>
