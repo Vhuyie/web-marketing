@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -71,8 +71,8 @@
       }
 
       .hero {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
         gap: 2rem;
         padding: 6rem 2rem;
@@ -107,50 +107,25 @@
         background: #00796b;
         transform: scale(1.05);
       }
-      .hero-illustration img {
-        width: 80%;
-        transform: rotate(-5deg);
-        animation: slideInRight 1s ease forwards;
+
+      /* Money Icon */
+      .hero-icon {
+        font-size: 6rem;
+        color: gold;
+        animation: bounce 2s infinite;
       }
 
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
       @keyframes slideInLeft {
-        from {
-          opacity: 0;
-          transform: translateX(-50px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+        from { opacity: 0; transform: translateX(-50px); }
+        to { opacity: 1; transform: translateX(0); }
       }
-      @keyframes slideInRight {
-        from {
-          opacity: 0;
-          transform: translateX(50px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-      @keyframes blobMove {
-        0% {
-          transform: translate(0, 0) rotate(0deg);
-        }
-        50% {
-          transform: translate(20px, -30px) rotate(45deg);
-        }
-        100% {
-          transform: translate(0, 0) rotate(0deg);
-        }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
       }
 
       .blob {
@@ -172,6 +147,11 @@
         bottom: -100px;
         right: -100px;
         animation-duration: 14s;
+      }
+      @keyframes blobMove {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        50% { transform: translate(20px, -30px) rotate(45deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
       }
 
       .pricing-grid {
@@ -259,9 +239,7 @@
         </p>
         <button class="subscribe-btn">Get Started</button>
       </div>
-      <div class="hero-illustration">
-        <img src="images\rands.jpg" alt="Pricing Illustration" />
-      </div>
+      <div class="hero-icon">💰</div>
       <div class="blob blob1"></div>
       <div class="blob blob2"></div>
     </section>
